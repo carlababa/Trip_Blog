@@ -11,7 +11,7 @@ RSpec.describe Post, type: :model do
   describe "#like_from(user)" do
     let(:user) { User.create(email: "user@social.com", password: "12345678") }
     let(:other_user) { User.create(email: "other-user@social.com", password: "12345678") }
-    let(:post) { Post.create(title: "Hoho", message: "Whoopie", user: user) }
+    let(:post) { Post.create(message: "Whoopie", user: user) }
     let(:like) { Like.create(post: post, user: user) }
     subject { post.like_from(user) }
 

@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+carla = User.create({email: "carla@test.com", password: "123456"})
+maria = User.create({email: "maria@test.com", password: "123456"})
+john = User.create({email: "john@test.com", password: "123456"})
+
+puts "Seeded #{User.count} users"

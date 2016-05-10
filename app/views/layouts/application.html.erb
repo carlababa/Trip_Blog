@@ -21,11 +21,13 @@
     <% end %>
     </ul>
   </nav>
+  
+  <div class="container">
+    <p id="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
-  <p id="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-<%= yield %>
+    <%= yield %>
+  </div>
 
 </body>
 </html>
