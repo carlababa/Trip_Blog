@@ -13,6 +13,16 @@ class LikesController < ApplicationController
     end
   end
 
+  def destroy
+    @like = @post.likes.where(user: current_user).find(params[:id])
+
+    if @like.destroy
+      redirect_to @post, notice: "You are no longer liking this post"
+    else
+      redirect_to @post, alert: "Your like could not be withdrawn, please retry"
+    end
+  end
+
   private
 
   def set_post

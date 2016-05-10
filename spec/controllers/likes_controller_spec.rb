@@ -47,4 +47,24 @@ RSpec.describe LikesController, type: :controller do
       end
     end
   end
+
+  describe "DELETE #destroy" do
+    let!(:like) { Like.create! post: a_post, user: user }
+
+    it "is not accessible when not logged in" do
+      delete :destroy, { post_id: a_post.to_param, id: like.to_param }
+      expect(response).to redirect_to new_user_session_path
+    end
+
+    context "when logged in" do
+      login_user
+
+      it "destroys an existing Like" do
+        expect {
+          delete :destroy, { post_id: a_post.to_param, id: like.to_param }
+        }.to change(Like, :count).by(-1)
+      end
+    end
+  end
+  
 end
