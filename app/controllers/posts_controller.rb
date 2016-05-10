@@ -1,8 +1,13 @@
 class PostsController < ApplicationController
   # GET /posts
   def index
-    @posts = Post.all
     @post = Post.new
+
+    if params[:search]
+      @posts = Post.where("title ILIKE ?", "%#{params[:search]}%")
+    else
+      @posts = Post.all
+    end
   end
 
   def show

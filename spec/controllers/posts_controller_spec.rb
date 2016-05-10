@@ -30,12 +30,23 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "GET #show" do
-    it "assigns the @posts" do
-      get :show, id: [a_post.id]
-      expect(assigns(:post)).to eq([a_post])
+
+    it "assigns @post and render the show template" do
+      get :show, id: a_post.id
+      expect(assigns(:post)).to eq(a_post)
     end
   end
 
+  describe "#search" do
+    it "should return results" do
+      valid_attributes[:title] = "Find on search"
+      search_post = Post.create! valid_attributes
+
+      get :index, "search" => "Find"
+      expect(assigns(:posts)).to eq([search_post])
+    end
+
+  end
 
   describe "POST #create" do
     it "is not accessible when not logged in" do

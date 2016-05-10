@@ -1,23 +1,29 @@
 <h1>Posts</h1>
 
-<% @posts.each do |post| %>
-  <div class="post">
-    <h1><%= post.title %></h1>
-    <div class="meta"><%= post.user.email %></div>
-    <p>
-      <% if current_user.liked?(post) %>
-        <%= link_to "Unlike", post_like_path([post, post.like_from(current_user)]), method: :delete %>
-      <% else %>
-        <%= link_to "Like", post_likes_path(post), method: :post %>
-      <% end %>
-    </p>
-  </div>
+<form>
+  <%= text_field_tag :search, params[:search], placeholder: "Search name", class: "form-control" %>
+  <%= submit_tag "Search", :name => nil, class:"btn btn-default" %>
+</form>
+
+<% if @posts.empty? %>
+  <p>Post not found!</p>
+<% else %>
+  <% @posts.each do |post| %>
+    <div class="post">
+        <h1><%= link_to post.title, post %></h1>
+        <p><%= post.message %></p>
+        <div class="meta"><%= post.user.email %></div>
+      </div>
+  <% end %>
 <% end %>
 
 <div class="new_post">
   <%= form_for(@post) do |f| %>
     <div class="input required">
+      <h3>Create new Post</h3>
+      <p><%= f.label "Title" %></p>
       <%= f.text_area :title %>
+      <p><%= f.label "Content" %></p>
       <%= f.text_area :message %>
     </div>
 
