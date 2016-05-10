@@ -13,7 +13,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   let(:invalid_attributes) do
-    { 
+    {
       message: ""
     }
   end
