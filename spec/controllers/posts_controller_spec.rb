@@ -21,19 +21,12 @@ RSpec.describe PostsController, type: :controller do
   let!(:a_post) { Post.create! valid_attributes }
 
   describe "GET #index" do
-    it "is not accessible when not logged in" do
+
+    it "assigns all posts as @posts" do
       get :index
-      expect(response).to redirect_to new_user_session_path
+      expect(assigns(:posts)).to eq([a_post])
     end
 
-    context "when logged in" do
-      login_user
-
-      it "assigns all posts as @posts" do
-        get :index
-        expect(assigns(:posts)).to eq([a_post])
-      end
-    end
   end
 
   describe "POST #create" do
