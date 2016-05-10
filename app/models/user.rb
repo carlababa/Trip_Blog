@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+   def liked?(post)
+     likes.pluck(:post_id).include?(post.id)
+   end
 end
