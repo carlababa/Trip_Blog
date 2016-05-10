@@ -29,9 +29,7 @@ RSpec.describe "posts/index", type: :view do
 
   it "renders a list of posts with title" do
     assert_select ".post>h1", text: "Hey You", count: 1
-    assert_select ".post>p", text: "Hello, I'm writing tests!", count: 1
     assert_select ".post>h1", text: "Hey You too", count: 1
-    assert_select ".post>p", text: "Hi, Here's another post!", count: 1
   end
 
   it "shows the user's email with the post" do

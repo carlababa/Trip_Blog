@@ -27,8 +27,15 @@ RSpec.describe PostsController, type: :controller do
       get :index
       expect(assigns(:posts)).to eq([a_post])
     end
-
   end
+
+  describe "GET #show" do
+    it "assigns the @posts" do
+      get :show, id: [a_post.id]
+      expect(assigns(:post)).to eq([a_post])
+    end
+  end
+
 
   describe "POST #create" do
     it "is not accessible when not logged in" do

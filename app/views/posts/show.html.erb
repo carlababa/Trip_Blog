@@ -1,0 +1,9 @@
+<h1>Posts</h1>
+
+<div class="post">
+  <h1><%= @post.title %></h1>
+  <p><%= @post.message %></p>
+  <div class="meta"><%= @post.user.email %></div>
+</div>
+
+<%= link_to 'Back', root_path, class: "btn btn-default" %>
