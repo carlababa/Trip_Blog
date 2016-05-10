@@ -14,6 +14,7 @@ RSpec.describe PostsController, type: :controller do
 
   let(:invalid_attributes) do
     {
+      title: "",
       message: ""
     }
   end

@@ -18,6 +18,8 @@ RSpec.describe "posts/index", type: :view do
       )
     ])
 
+    assign(:post, Post.new)
+
     render
   end
 
@@ -25,18 +27,23 @@ RSpec.describe "posts/index", type: :view do
     assert_select "h1", text: "Posts", count: 1
   end
 
-  it "renders a list of title posts" do
+  it "renders a list of posts with title" do
     assert_select ".post>h1", text: "Hey You", count: 1
-    assert_select ".post>h1", text: "Hey You too", count: 1
-  end
-
-  it "renders a list of posts" do
     assert_select ".post>p", text: "Hello, I'm writing tests!", count: 1
+    assert_select ".post>h1", text: "Hey You too", count: 1
     assert_select ".post>p", text: "Hi, Here's another post!", count: 1
   end
 
   it "shows the user's email with the post" do
     assert_select ".post>.meta", text: user.email, count: 1
     assert_select ".post>.meta", text: other_user.email, count: 1
+  end
+
+  it "renders new post form" do
+    assert_select "form[action=?][method=?]", posts_path, "post" do
+      assert_select "textarea#post_title[name=?]", "post[title]"
+      assert_select "textarea#post_message[name=?]", "post[message]"
+      assert_select "input#[type=?][value=?]", "submit", "Create Post"
+    end
   end
 end

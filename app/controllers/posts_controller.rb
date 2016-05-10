@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.all
+    @post = Post.new
   end
 
   def show
@@ -21,6 +22,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:message)
+    params.require(:post).permit(:title, :message)
   end
 end

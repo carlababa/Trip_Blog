@@ -2,8 +2,21 @@
 
 <% @posts.each do |post| %>
   <div class="post">
-    <div class="meta"><%= post.user.email %></div>
     <h1><%= post.title %></h1>
     <p><%= post.message %></p>
+    <div class="meta"><%= post.user.email %></div>
   </div>
 <% end %>
+
+<div class="new_post">
+  <%= form_for(@post) do |f| %>
+    <div class="input required">
+      <%= f.text_area :title %>
+      <%= f.text_area :message %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
