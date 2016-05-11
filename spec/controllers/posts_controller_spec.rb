@@ -48,6 +48,24 @@ RSpec.describe PostsController, type: :controller do
 
   end
 
+  describe "DELETE #destroy" do
+    it "is not accessible when not logged in" do
+      delete :destroy, id: a_post.id
+      expect(response).to redirect_to new_user_session_path
+    end
+
+    context "when logged in" do
+      login_user
+
+      it "destroys an existing Post" do
+        expect {
+          delete :show, id: a_post.id
+        }.to change(Post, :count).by(0)
+      end
+    end
+  end
+
+
   describe "POST #create" do
     it "is not accessible when not logged in" do
       post :create, {post: valid_attributes}

@@ -4,7 +4,6 @@ class Post < ActiveRecord::Base
   validates_presence_of :user, :message
 
   def like_from(user)
-    debugger
     likes.where(user: user).first
   end
 end
