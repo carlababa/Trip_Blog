@@ -11,3 +11,24 @@ maria = User.create({email: "maria@test.com", password: "123456"})
 john = User.create({email: "john@test.com", password: "123456"})
 
 puts "Seeded #{User.count} users"
+
+tags = [
+   "Asia",
+   "Europe",
+   "South America",
+   "North America",
+   "Central America",
+   "Oceania",
+   "By car",
+   "By train",
+   "Bike trip",
+   "Historical",
+   "Nature",
+   "Night life",
+   "Culture",
+   "Urban"
+ ]
+
+tags.each do |tag_name|
+   tag = Tag.create( name: tag_name )
+end
