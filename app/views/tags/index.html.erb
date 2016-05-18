@@ -1,7 +1,7 @@
 <h1>Tags</h1>
 
-<div>
-   <% @tags.each do |tag| %>
-      <%= link_to "#{tag.name} • #{tag.posts.size}", tag, class: "btn btn-primary" %>
-   <% end %>
-</div>
+ <% @tags.each do |tag| %>
+  <div>
+    <%= link_to "#{tag.name} • #{tag.posts.size}", tag, class: "btn btn-primary", id: "tagname" %>
+  </div>
+ <% end %>
