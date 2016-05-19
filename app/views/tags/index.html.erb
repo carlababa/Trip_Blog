@@ -2,6 +2,6 @@
 
  <% @tags.each do |tag| %>
   <div>
-    <%= link_to "#{tag.name} • #{tag.posts.size}", tag, class: "btn btn-primary", id: "tagname" %>
+    <%= link_to "#{tag.name} • #{tag.posts.size}", tag, class: "btn btn-primary tagname" %>
   </div>
  <% end %>

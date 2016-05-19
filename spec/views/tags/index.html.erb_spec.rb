@@ -1,18 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "tags/index", type: :view do
-
-  before(:each) do
-    assign(:tags, [
+  let(:tags) do
+    [
       Tag.create!(
         name: "Nice Tag"
       ),
       Tag.create!(
         name: "Other Tag"
-      )])
+      )
+    ]
+  end
 
-    assign(:tag, Tag.new)
-
+  before(:each) do
+    assign(:tags, tags)
     render
   end
 
@@ -21,7 +22,13 @@ RSpec.describe "tags/index", type: :view do
   end
 
   it "renders the tags" do
-    assert_select "#tagname", count:2
+    assert_select ".tagname", count: 2 do |e|
+      expect(e[0][:href]).to eq("/tags/#{tags[0].id}")
+      expect(e[0].text).to eq("#{tags[0].name} • #{tags[0].posts.count}")
+
+      expect(e[1][:href]).to eq("/tags/#{tags[1].id}")
+      expect(e[1].text).to eq("#{tags[1].name} • #{tags[1].posts.count}")
+    end
   end
 
 end

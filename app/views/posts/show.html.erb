@@ -1,11 +1,11 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.message %><p>
 
-<p>
+<div class="tags">
    <% @post.tags.each do |tag| %>
        <%= link_to "#{tag.name}", tag, class: "btn btn-primary btn-xs" %>
    <% end %>
-</p>
+</div>
 
-<%= link_to 'Delete', post_path, class: "btn btn-default", method: :delete %>
+<%= link_to 'Delete', @post, class: "btn btn-default", method: :delete %>
 <%= link_to 'Back', root_path, class: "btn btn-default" %>
