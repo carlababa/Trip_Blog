@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  get 'tags/index'
+
+  get 'tags/show'
+
   devise_for :users
+  resources :tags
   resources :posts, only: [:show, :create, :destroy] do
     resources :likes, only: [:create, :destroy]
   end

@@ -41,6 +41,7 @@ RSpec.describe "posts/index", type: :view do
     assert_select "form[action=?][method=?]", posts_path, "post" do
       assert_select "textarea#post_title[name=?]", "post[title]"
       assert_select "textarea#post_message[name=?]", "post[message]"
+      assert_select "select#post_tag_ids[name=?]", "post[tag_ids][]"
       assert_select "input#[type=?][value=?]", "submit", "Create Post"
     end
   end

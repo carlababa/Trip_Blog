@@ -1,0 +1,7 @@
+<h1><%= @tag.name %></h1>
+
+<% @tag.posts.each do |post| %>
+  <div class="posts">
+    <%= link_to "#{post.title}", post, class: "btn btn-primary btn-xs" %>
+  </div>
+<% end %>
